@@ -99,6 +99,23 @@ int* random_arr(int n, int l, int u) {
 
     return randArr;
 }
+int numOfInversions(int* arr, int n) {
+    int d = 0;
+    int dTotal = 0;
+    int temp;
+
+    for (int i = 0; i < n; ++i) {
+        temp = arr[i];
+        for (int j = 0; j < n; ++j) {
+            if (temp < arr[j]) {
+                d++;
+            }
+        }
+        dTotal += d;
+        d = 0;
+    }
+    return dTotal;
+}
 //main function
 int main()
 {
@@ -141,6 +158,9 @@ int main()
     for (int i = 0; i < n; ++i) cout << bubbleSort(A, n, D)[i] << ", ";
     cout << endl;
     // find both the quality metrics for bubResult
+    cout << "Number of Inversions: " << endl;
+    cout << numOfInversions(bubbleSort(A, n, D), n) << endl;
+    cout << "Chebyshev distance: " << endl;
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -152,6 +172,9 @@ int main()
     // display shellResult
 
     // find both the quality metrics for shellResult
+    cout << "Number of Inversions: " << endl;
+    cout << numOfInversions(shellSort(A, n, D), n) << endl;
+    cout << "Chebyshev distance: " << endl;
 
     return 0;
 }
