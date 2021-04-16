@@ -96,6 +96,8 @@ int* random_arr(int n, int l, int u) {
     int* randArr = new int[n];
 
     for(int i = 0; i < n; ++i) randArr[i] = rand() % u + l;
+
+    return randArr;
 }
 //main function
 int main()
@@ -113,18 +115,22 @@ int main()
     // generate n random elements with the seed s, within the lower and upper range
     // store the randomly generated UNIQUE set of elements in an array 'A'
 
+    int* A = new int[n];
+    for (int i = 0; i < n; ++i) A[i] = random_arr(n, l, u)[i];
 
     // you may use the unordered set to help generate unique elements
 
     cout << "Randomly generated elements: ~~~~~~~~~~" << endl;
-    for (int i = 0; i < n; ++i) A[i];
+    for (int i = 0; i < n; ++i) cout << A[i] << ", ";
+    cout << endl;
     // display the array A
 
     // use one of the sorting algorithms with the third argument for D as n*n (for bubble sort) and store the fully sorted result
 
     cout << "Completely sorted elements: ~~~~~~~~~~" << endl;
     // display the completely sorted array
-
+    for (int i = 0; i < n; ++i) cout << bubbleSort(A, n, n*n)[i] << ", ";
+    cout << endl;
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     // sort the array A with only given D comparions using the Bubble Sort algorithm and store the output array as bubResult in an array
