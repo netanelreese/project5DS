@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/reese/CLionProjects/project5_2413/main.cpp
+iostream
+-
+cstdlib
+-
+math.h
+-
+unordered_set
+-
+

@@ -92,7 +92,11 @@ int* shellSort(int* arr, int numElements, int D)
     }
     return arr;
 }
+int* random_arr(int n, int l, int u) {
+    int* randArr = new int[n];
 
+    for(int i = 0; i < n; ++i) randArr[i] = rand() % u + l;
+}
 //main function
 int main()
 {
@@ -109,9 +113,11 @@ int main()
     // generate n random elements with the seed s, within the lower and upper range
     // store the randomly generated UNIQUE set of elements in an array 'A'
 
+
     // you may use the unordered set to help generate unique elements
 
     cout << "Randomly generated elements: ~~~~~~~~~~" << endl;
+    for (int i = 0; i < n; ++i) A[i];
     // display the array A
 
     // use one of the sorting algorithms with the third argument for D as n*n (for bubble sort) and store the fully sorted result
