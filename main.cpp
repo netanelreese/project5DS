@@ -100,23 +100,38 @@ int* random_arr(int n, int l, int u) {
     return randArr;
 }
 int numOfInversions(int* arr, int n) {
-    int d = 0;
-    int dTotal = 0;
+    int i = 0; //number of inversions for one number
+    int iTotal = 0; //total number of inversions needed
     int temp;
 
     for (int i = 0; i < n; ++i) {
         temp = arr[i];
         for (int j = 0; j < n; ++j) {
             if (temp < arr[j]) {
-                d++;
+                i++;
             }
         }
-        dTotal += d;
-        d = 0;
+        iTotal += i;
+        i = 0;
     }
-    return dTotal;
+    return iTotal;
 }
 int chebyshev_distance(int* unsorted, int* sorted, int n) {
+    int distanceTemp = 0;
+    int distance = 0;
+
+    for(int i = 0; i < n; ++i) {
+        for (int j = i; j < n; ++j) {
+            if (sorted[i] != unsorted[j]) {
+                distanceTemp++;
+            }
+        }
+        distance = i - distanceTemp;
+        if (distance < 0) {
+            distance * -1;
+        }
+    }
+
     return 0;
 }
 //main function
@@ -187,6 +202,12 @@ int main()
     cout << "Number of Inversions: " << endl;
     cout << numOfInversions(shell, n) << endl;
     cout << "Chebyshev distance: " << endl;
+
+
+    delete [] A;
+    delete [] sorted;
+    delete [] shell;
+    delete [] bubble;
 
     return 0;
 }
