@@ -138,7 +138,8 @@ int main()
     cout << "Bubble Sort Result: ~~~~~~~~~~" << endl;
 
     // display bubResult
-
+    for (int i = 0; i < n; ++i) cout << bubbleSort(A, n, D)[i] << ", ";
+    cout << endl;
     // find both the quality metrics for bubResult
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -146,7 +147,8 @@ int main()
     // sort the array A with only given D comparions using the Shell Sort algorithm and store the output array as shellResult in an array
     // calculate and display the two quality measures for shellResult
     cout << "Shell Sort Result: ~~~~~~~~~~" << endl;
-
+    for (int i = 0; i < n; ++i) cout << shellSort(A, n, D)[i] << ", ";
+    cout << endl;
     // display shellResult
 
     // find both the quality metrics for shellResult
