@@ -116,6 +116,9 @@ int numOfInversions(int* arr, int n) {
     }
     return dTotal;
 }
+int chebyshev_distance(int* unsorted, int* sorted, int n) {
+    return 0;
+}
 //main function
 int main()
 {
@@ -125,6 +128,11 @@ int main()
 
     int s, l, u, D;
 
+    int* A = new int[n];
+    int* sorted = new int[n];
+    int* bubble = new int[n];
+    int* shell = new int [n];
+
     cin >> s >> l >> u >> D; // read the seed, lower range, upper range and the number of comparisons
     cout << "Number of comparisons allowed: " << D << endl;
     cout << endl;
@@ -132,7 +140,7 @@ int main()
     // generate n random elements with the seed s, within the lower and upper range
     // store the randomly generated UNIQUE set of elements in an array 'A'
 
-    int* A = new int[n];
+
     for (int i = 0; i < n; ++i) A[i] = random_arr(n, l, u)[i];
 
     // you may use the unordered set to help generate unique elements
@@ -144,22 +152,25 @@ int main()
 
     // use one of the sorting algorithms with the third argument for D as n*n (for bubble sort) and store the fully sorted result
 
+    for (int i = 0; i < n; ++i) sorted[i] = bubbleSort(A, n, n*n)[i];
+
     cout << "Completely sorted elements: ~~~~~~~~~~" << endl;
     // display the completely sorted array
-    for (int i = 0; i < n; ++i) cout << bubbleSort(A, n, n*n)[i] << ", ";
+    for (int i = 0; i < n; ++i) cout << sorted[i] << ", ";
     cout << endl;
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     // sort the array A with only given D comparions using the Bubble Sort algorithm and store the output array as bubResult in an array
     // calculate and display the two quality measures for bubResult
     cout << "Bubble Sort Result: ~~~~~~~~~~" << endl;
+    for (int i = 0; i < n; ++i) bubble[i] = bubbleSort(A, n, D)[i];
 
     // display bubResult
-    for (int i = 0; i < n; ++i) cout << bubbleSort(A, n, D)[i] << ", ";
+    for (int i = 0; i < n; ++i) cout << bubble[i] << ", ";
     cout << endl;
     // find both the quality metrics for bubResult
     cout << "Number of Inversions: " << endl;
-    cout << numOfInversions(bubbleSort(A, n, D), n) << endl;
+    cout << numOfInversions(bubble, n) << endl;
     cout << "Chebyshev distance: " << endl;
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -167,13 +178,14 @@ int main()
     // sort the array A with only given D comparions using the Shell Sort algorithm and store the output array as shellResult in an array
     // calculate and display the two quality measures for shellResult
     cout << "Shell Sort Result: ~~~~~~~~~~" << endl;
-    for (int i = 0; i < n; ++i) cout << shellSort(A, n, D)[i] << ", ";
+    for (int i = 0; i < n; ++i) shell[i] = shellSort(A, n, D)[i];
+    for (int i = 0; i < n; ++i) cout << shell[i] << ", ";
     cout << endl;
     // display shellResult
 
     // find both the quality metrics for shellResult
     cout << "Number of Inversions: " << endl;
-    cout << numOfInversions(shellSort(A, n, D), n) << endl;
+    cout << numOfInversions(shell, n) << endl;
     cout << "Chebyshev distance: " << endl;
 
     return 0;
