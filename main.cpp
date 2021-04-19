@@ -108,44 +108,44 @@ int indexOf(int* arr, int n, int x) { //gets the index of an element x in an arr
     }
     return -1; //if element is not found then return -1 meaning element not found
 }
-int numOfInversions(int* arr, int n) {
+int numOfInversions(int* arr, int n) { //gets the number of inversions required to sort an array
     int index = 0; //number of inversions for one number
     int iTotal = 0; //total number of inversions needed
-    int temp;
+    int temp; //temporary variable to store a value
 
     for (int i = 0; i < n; ++i) {
         temp = arr[i];
         for (int j = i; j < n; ++j) {
-            if (arr[j] < temp) {
+            if (arr[j] < temp) { //if any element is less than temp increment index
                 index++;
             }
         }
-        iTotal += index;
+        iTotal += index; //add index to iTotal and reset index
         index = 0;
     }
-    return iTotal;
+    return iTotal; //return the total number of inversions required
 }
 int chebyshev_distance(int* unsorted, int* sorted, int n) {
-    int sortIndex = 0;
-    int unsortIndex = 0;
-    int distanceTemp = 0;
-    int distance = 0;
+    int sortIndex = 0; //index of the element in the sorted arr
+    int unsortIndex = 0; //index of the element in the unsorted arr
+    int distanceTemp = 0; //temp value for distance
+    int distance = 0; //max distance
 
     for (int i = 0; i < n; ++i) {
         sortIndex = indexOf(sorted, n, sorted[i]);
         unsortIndex = indexOf(unsorted, n, sorted[i]);
-        if (sortIndex > unsortIndex) {
+        if (sortIndex > unsortIndex) { //gets the distance from the index in the sorted array
             distanceTemp = sortIndex - unsortIndex;
         }
         else {
             distanceTemp = unsortIndex - sortIndex;
         }
-        if (distanceTemp > distance) {
+        if (distanceTemp > distance) { //if the temp distance is greater than the stored distance, store temp distance
             distance = distanceTemp;
         }
     }
 
-    return distance;
+    return distance; //return max distance
 }
 //main function
 int main()
