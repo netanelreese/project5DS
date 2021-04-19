@@ -92,21 +92,21 @@ int* shellSort(int* arr, int numElements, int D)
     }
     return arr;
 }
-int* random_arr(int n, int l, int u) {
+int* random_arr(int n, int l, int u) { //n is size, l is lower bound and u us upper bound
     int* randArr = new int[n];
 
-    for(int i = 0; i < n; ++i) randArr[i] = rand() % u + l;
+    for(int i = 0; i < n; ++i) randArr[i] = rand() % u + l; //assigns the respective element with a random number between
+    //the two bounds
 
-    return randArr;
+    return randArr; //returns the array
 }
-int indexOf(int* arr, int n, int x) {
-    int index;
+int indexOf(int* arr, int n, int x) { //gets the index of an element x in an array arr of size n
     for (int i = 0; i < n; ++i) {
-        if (x == arr[i]) {
-            index = i;
+        if (x == arr[i]) { //if x equals the ith element of arr then returns the first index of x
+            return i;
         }
     }
-    return index;
+    return -1; //if element is not found then return -1 meaning element not found
 }
 int numOfInversions(int* arr, int n) {
     int index = 0; //number of inversions for one number
