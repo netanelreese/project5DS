@@ -109,39 +109,43 @@ int indexOf(int* arr, int n, int x) {
     return index;
 }
 int numOfInversions(int* arr, int n) {
-    int i = 0; //number of inversions for one number
+    int index = 0; //number of inversions for one number
     int iTotal = 0; //total number of inversions needed
     int temp;
 
     for (int i = 0; i < n; ++i) {
         temp = arr[i];
-        for (int j = 0; j < n; ++j) {
-            if (temp < arr[j]) {
-                i++;
+        for (int j = i; j < n; ++j) {
+            if (arr[j] < temp) {
+                index++;
             }
         }
-        iTotal += i;
-        i = 0;
+        iTotal += index;
+        index = 0;
     }
     return iTotal;
 }
 int chebyshev_distance(int* unsorted, int* sorted, int n) {
+    int sortIndex = 0;
+    int unsortIndex = 0;
     int distanceTemp = 0;
     int distance = 0;
 
-    for(int i = 0; i < n; ++i) {
-        for (int j = i; j < n; ++j) {
-            if (sorted[i] != unsorted[j]) {
-                distanceTemp++;
-            }
+    for (int i = 0; i < n; ++i) {
+        sortIndex = indexOf(sorted, n, sorted[i]);
+        unsortIndex = indexOf(unsorted, n, sorted[i]);
+        if (sortIndex > unsortIndex) {
+            distanceTemp = sortIndex - unsortIndex;
         }
-        distance = i - distanceTemp;
-        if (distance < 0) {
-            distance *= -1;
+        else {
+            distanceTemp = unsortIndex - sortIndex;
+        }
+        if (distanceTemp > distance) {
+            distance = distanceTemp;
         }
     }
 
-    return 0;
+    return distance;
 }
 //main function
 int main()
@@ -196,6 +200,7 @@ int main()
     cout << "Number of Inversions: " << endl;
     cout << numOfInversions(bubble, n) << endl;
     cout << "Chebyshev distance: " << endl;
+    cout << chebyshev_distance(bubble, sorted, n) << endl;
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -211,6 +216,7 @@ int main()
     cout << "Number of Inversions: " << endl;
     cout << numOfInversions(shell, n) << endl;
     cout << "Chebyshev distance: " << endl;
+    cout << chebyshev_distance(shell, sorted, n);
 
 
     delete [] A;
