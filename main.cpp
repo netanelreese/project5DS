@@ -99,6 +99,15 @@ int* random_arr(int n, int l, int u) {
 
     return randArr;
 }
+int indexOf(int* arr, int n, int x) {
+    int index;
+    for (int i = 0; i < n; ++i) {
+        if (x == arr[i]) {
+            index = i;
+        }
+    }
+    return index;
+}
 int numOfInversions(int* arr, int n) {
     int i = 0; //number of inversions for one number
     int iTotal = 0; //total number of inversions needed
@@ -128,7 +137,7 @@ int chebyshev_distance(int* unsorted, int* sorted, int n) {
         }
         distance = i - distanceTemp;
         if (distance < 0) {
-            distance * -1;
+            distance *= -1;
         }
     }
 
