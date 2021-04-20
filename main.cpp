@@ -92,9 +92,10 @@ int* shellSort(int* arr, int numElements, int D)
     }
     return arr;
 }
-int* random_arr(int n, int l, int u) { //n is size, l is lower bound and u us upper bound
+int* random_arr(int n, int l, int u, int s) { //n is size, l is lower bound and u us upper bound
     int* randArr = new int[n];
 
+    srand(s);
     for(int i = 0; i < n; ++i) randArr[i] = rand() % u + l; //assigns the respective element with a random number between
     //the two bounds
 
@@ -169,13 +170,13 @@ int main()
     // store the randomly generated UNIQUE set of elements in an array 'A'
 
 
-    for (int i = 0; i < n; ++i) A[i] = random_arr(n, l, u)[i];
+    for (int i = 0; i < n; ++i) A[i] = random_arr(n, l, u, s)[i];
 
     // you may use the unordered set to help generate unique elements
 
     cout << "Randomly generated elements: ~~~~~~~~~~" << endl;
-    for (int i = 0; i < n; ++i) cout << A[i] << ", ";
-    cout << endl;
+    for (int i = 0; i < n; ++i) cout << A[i] << " ";
+    cout << endl << endl;
     // display the array A
 
     // use one of the sorting algorithms with the third argument for D as n*n (for bubble sort) and store the fully sorted result
@@ -184,8 +185,8 @@ int main()
 
     cout << "Completely sorted elements: ~~~~~~~~~~" << endl;
     // display the completely sorted array
-    for (int i = 0; i < n; ++i) cout << sorted[i] << ", ";
-    cout << endl;
+    for (int i = 0; i < n; ++i) cout << sorted[i] << " ";
+    cout << endl << endl;
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     // sort the array A with only given D comparions using the Bubble Sort algorithm and store the output array as bubResult in an array
@@ -194,13 +195,13 @@ int main()
     for (int i = 0; i < n; ++i) bubble[i] = bubbleSort(A, n, D)[i];
 
     // display bubResult
-    for (int i = 0; i < n; ++i) cout << bubble[i] << ", ";
-    cout << endl;
+    for (int i = 0; i < n; ++i) cout << bubble[i] << " ";
+    cout << endl << endl;
     // find both the quality metrics for bubResult
-    cout << "Number of Inversions: " << endl;
+    cout << "Number of inversions in bubResult: ";
     cout << numOfInversions(bubble, n) << endl;
-    cout << "Chebyshev distance: " << endl;
-    cout << chebyshev_distance(bubble, sorted, n) << endl;
+    cout << "Chebyshev distance in bubResult: ";
+    cout << chebyshev_distance(bubble, sorted, n) << endl << endl;
 
     // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -208,14 +209,14 @@ int main()
     // calculate and display the two quality measures for shellResult
     cout << "Shell Sort Result: ~~~~~~~~~~" << endl;
     for (int i = 0; i < n; ++i) shell[i] = shellSort(A, n, D)[i];
-    for (int i = 0; i < n; ++i) cout << shell[i] << ", ";
-    cout << endl;
+    for (int i = 0; i < n; ++i) cout << shell[i] << " ";
+    cout << endl << endl;
     // display shellResult
 
     // find both the quality metrics for shellResult
-    cout << "Number of Inversions: " << endl;
+    cout << "Number of inversions in shellResult: ";
     cout << numOfInversions(shell, n) << endl;
-    cout << "Chebyshev distance: " << endl;
+    cout << "Chebyshev distance in shellResult: ";
     cout << chebyshev_distance(shell, sorted, n);
 
 
