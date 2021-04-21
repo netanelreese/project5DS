@@ -96,9 +96,9 @@ int* random_arr(int n, int l, int u, int s) { //n is size, l is lower bound and 
     unordered_set<int>* randSet = new unordered_set<int>(n);
     int* randArr = new int[n];
 
-    for(int i = 0; i < n; ++i) randSet->insert(rand() % (u + 1 - l) + l);
+    for(int i = 0; i < n; ++i) randSet->insert(l + (rand() % (u + 1 - l)));
     int i = 0;
-    for (int x: *randSet) {
+    for (int x : *randSet) {
         randArr[i] = x;
         ++i;
     }
@@ -178,7 +178,7 @@ int main()
     // store the randomly generated UNIQUE set of elements in an array 'A'
 
 
-    for (int i = 0; i < n; ++i) A[i] = random_arr(n, l, u, s)[i];
+    A = random_arr(n, l, u, s);
 
     // you may use the unordered set to help generate unique elements
 
@@ -189,7 +189,7 @@ int main()
 
     // use one of the sorting algorithms with the third argument for D as n*n (for bubble sort) and store the fully sorted result
 
-    for (int i = 0; i < n; ++i) sorted[i] = bubbleSort(A, n, n*n)[i];
+    sorted = bubbleSort(A, n, n*n);
 
     cout << "Completely sorted elements: ~~~~~~~~~~" << endl;
     // display the completely sorted array
@@ -200,7 +200,7 @@ int main()
     // sort the array A with only given D comparions using the Bubble Sort algorithm and store the output array as bubResult in an array
     // calculate and display the two quality measures for bubResult
     cout << "Bubble Sort Result: ~~~~~~~~~~" << endl;
-    for (int i = 0; i < n; ++i) bubble[i] = bubbleSort(A, n, D)[i];
+    bubble = bubbleSort(A, n, D);
 
     // display bubResult
     for (int i = 0; i < n; ++i) cout << bubble[i] << " ";
@@ -216,7 +216,7 @@ int main()
     // sort the array A with only given D comparions using the Shell Sort algorithm and store the output array as shellResult in an array
     // calculate and display the two quality measures for shellResult
     cout << "Shell Sort Result: ~~~~~~~~~~" << endl;
-    for (int i = 0; i < n; ++i) shell[i] = shellSort(A, n, D)[i];
+    shell = shellSort(A, n, D);
     for (int i = 0; i < n; ++i) cout << shell[i] << " ";
     cout << endl << endl;
     // display shellResult
