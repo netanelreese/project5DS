@@ -151,22 +151,23 @@ int main()
     int* A = new int[n];
     int* sorted = new int[n];
     int* bubble = new int[n];
-    int* shell = new int [n];
 
     cin >> s >> l >> u >> D; // read the seed, lower range, upper range and the number of comparisons
     cout << "Number of comparisons allowed: " << D << endl;
     cout << endl;
 
-    srand(s);
+    srand(s); //seeding rand()
 
     // generate n random elements with the seed s, within the lower and upper range
     // store the randomly generated UNIQUE set of elements in an array 'A'
 
-    unordered_set<int>* randSet = new unordered_set<int>(n);
+    unordered_set<int> randSet;
 
-    for(int i = 0; i < n; ++i) randSet->insert(l + (rand() % (u + 1 - l)));
+    for(int i = 0; i < n; ++i) {
+        randSet.insert(l + (rand() % (u + 1 - l)));
+    }
     int i = 0;
-    for (int x : *randSet) {
+    for (int x : randSet) {
         A[i] = x;
         ++i;
     }
@@ -174,7 +175,11 @@ int main()
     // you may use the unordered set to help generate unique elements
 
     cout << "Randomly generated elements: ~~~~~~~~~~" << endl;
-    for (int i = 0; i < n; ++i) cout << A[i] << " ";
+    //for (int i = 0; i < n; ++i) cout << A[i] << " ";
+    unordered_set<int> :: iterator itr;
+    for (itr = randSet.begin(); itr != randSet.end(); itr++) {
+        cout << *itr << " ";
+    }
     cout << endl << endl;
     // display the array A
 
@@ -221,7 +226,6 @@ int main()
 
     delete [] A;
     delete [] sorted;
-    delete [] shell;
     delete [] bubble;
 
     return 0;

@@ -92,21 +92,6 @@ int* shellSort(int* arr, int numElements, int D)
     }
     return arr;
 }
-int* random_arr(int n, int l, int u, int s) { //n is size, l is lower bound and u us upper bound
-    unordered_set<int>* randSet = new unordered_set<int>(n);
-    int* randArr = new int[n];
-
-    for(int i = 0; i < n; ++i) randSet->insert(l + (rand() % (u + 1 - l)));
-    int i = 0;
-    for (int x : *randSet) {
-        randArr[i] = x;
-        ++i;
-    }
-    //for(int i = 0; i < n; ++i) randArr[i] = rand() % (u + 1 - l) + l; //assigns the respective element with a random number between
-    //the two bounds
-
-    return randArr; //returns the array
-}
 int indexOf(int* arr, int n, int x) { //gets the index of an element x in an array arr of size n
     for (int i = 0; i < n; ++i) {
         if (x == arr[i]) { //if x equals the ith element of arr then returns the first index of x
@@ -166,22 +151,23 @@ int main()
     int* A = new int[n];
     int* sorted = new int[n];
     int* bubble = new int[n];
-    int* shell = new int [n];
 
     cin >> s >> l >> u >> D; // read the seed, lower range, upper range and the number of comparisons
     cout << "Number of comparisons allowed: " << D << endl;
     cout << endl;
 
-    srand(s);
+    srand(s); //seeding rand()
 
     // generate n random elements with the seed s, within the lower and upper range
     // store the randomly generated UNIQUE set of elements in an array 'A'
 
-    unordered_set<int>* randSet = new unordered_set<int>(n);
+    unordered_set<int> randSet;
 
-    for(int i = 0; i < n; ++i) randSet->insert(l + (rand() % (u + 1 - l)));
+    for(int i = 0; i < n; ++i) {
+        randSet.insert(l + (rand() % (u + 1 - l)));
+    }
     int i = 0;
-    for (int x : *randSet) {
+    for (int x : randSet) {
         A[i] = x;
         ++i;
     }
@@ -189,7 +175,11 @@ int main()
     // you may use the unordered set to help generate unique elements
 
     cout << "Randomly generated elements: ~~~~~~~~~~" << endl;
-    for (int i = 0; i < n; ++i) cout << A[i] << " ";
+    //for (int i = 0; i < n; ++i) cout << A[i] << " ";
+    unordered_set<int> :: iterator itr;
+    for (itr = randSet.begin(); itr != randSet.end(); itr++) {
+        cout << *itr << " ";
+    }
     cout << endl << endl;
     // display the array A
 
@@ -206,7 +196,7 @@ int main()
     // sort the array A with only given D comparions using the Bubble Sort algorithm and store the output array as bubResult in an array
     // calculate and display the two quality measures for bubResult
     cout << "Bubble Sort Result: ~~~~~~~~~~" << endl;
-    for (int i = 0; i < n; ++i) bubble[i] = bubbleSort(A, n, D)[i];
+    bubble = bubbleSort(A, n, D);
 
     // display bubResult
     for (int i = 0; i < n; ++i) cout << bubble[i] << " ";
@@ -222,21 +212,20 @@ int main()
     // sort the array A with only given D comparions using the Shell Sort algorithm and store the output array as shellResult in an array
     // calculate and display the two quality measures for shellResult
     cout << "Shell Sort Result: ~~~~~~~~~~" << endl;
-    for (int i = 0; i < n; ++i) shell[i] = shellSort(A, n, D)[i];
-    for (int i = 0; i < n; ++i) cout << shell[i] << " ";
+    shellSort(A, n, D);
+    for (int i = 0; i < n; ++i) cout << A[i] << " ";
     cout << endl << endl;
     // display shellResult
 
     // find both the quality metrics for shellResult
     cout << "Number of inversions in shellResult: ";
-    cout << numOfInversions(shell, n) << endl;
+    cout << numOfInversions(A, n) << endl;
     cout << "Chebyshev distance in shellResult: ";
-    cout << chebyshev_distance(shell, sorted, n);
+    cout << chebyshev_distance(A, sorted, n);
 
 
     delete [] A;
     delete [] sorted;
-    delete [] shell;
     delete [] bubble;
 
     return 0;
