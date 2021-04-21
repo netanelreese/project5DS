@@ -177,8 +177,14 @@ int main()
     // generate n random elements with the seed s, within the lower and upper range
     // store the randomly generated UNIQUE set of elements in an array 'A'
 
+    unordered_set<int>* randSet = new unordered_set<int>(n);
 
-    for (int i = 0; i < n; ++i) A[i] = random_arr(n, l, u, s)[i];
+    for(int i = 0; i < n; ++i) randSet->insert(l + (rand() % (u + 1 - l)));
+    int i = 0;
+    for (int x : *randSet) {
+        A[i] = x;
+        ++i;
+    }
 
     // you may use the unordered set to help generate unique elements
 
@@ -189,7 +195,7 @@ int main()
 
     // use one of the sorting algorithms with the third argument for D as n*n (for bubble sort) and store the fully sorted result
 
-    for (int i = 0; i < n; ++i) sorted[i] = bubbleSort(A, n, n*n)[i];
+    sorted = bubbleSort(A, n, n*n);
 
     cout << "Completely sorted elements: ~~~~~~~~~~" << endl;
     // display the completely sorted array
