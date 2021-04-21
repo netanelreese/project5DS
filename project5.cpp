@@ -59,13 +59,14 @@ int* shellSort(int* arr, int numElements, int D)
             int temp = arr[i];
             j = i - inc;
 
-            numComp++; // incrementing the number of comparisons done right before
-            // the if condition where the comparison happens each time
-            if(numComp >= D) // checking for number of comparisons
-                return arr; // return the not necessarily sorted array = approximately sorted array
 
             while ((j >= 0) && (arr[j] > temp))
             {
+                numComp++; // incrementing the number of comparisons done right before
+                // the if condition where the comparison happens each time
+                if(numComp >= D) // checking for number of comparisons
+                    return arr; // return the not necessarily sorted array = approximately sorted array
+
                 arr[j + inc] = arr[j];
                 j = j - inc;
             }
@@ -78,13 +79,14 @@ int* shellSort(int* arr, int numElements, int D)
         int temp = arr[i];
         j = i - 1;
 
-        numComp++; // incrementing the number of comparisons done right before
-        // the if condition where the comparison happens each time
-        if(numComp >= D) // checking for number of comparisons
-            return arr; // return the not necessarily sorted array = approximately sorted array
 
         while ((j >= 0) && (arr[j] > temp))
         {
+            numComp++; // incrementing the number of comparisons done right before
+            // the if condition where the comparison happens each time
+            if(numComp >= D) // checking for number of comparisons
+                return arr; // return the not necessarily sorted array = approximately sorted array
+
             arr[j + 1] = arr[j];
             j = j - 1;
         }
