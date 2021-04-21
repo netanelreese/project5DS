@@ -102,7 +102,7 @@ int* random_arr(int n, int l, int u, int s) { //n is size, l is lower bound and 
     //for ( auto it = randSet->begin(); it != randSet->end(); ++it ) {
     //    randSet[i] = *it._Getcont();
     //}
-    for(int i = 0; i < n; ++i) randArr[i] = l + (rand() % u + 1 - l); //assigns the respective element with a random number between
+    for(int i = 0; i < n; ++i) randArr[i] = rand() % u + l; //assigns the respective element with a random number between
     //the two bounds
 
     return randArr; //returns the array
